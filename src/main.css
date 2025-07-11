@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --primary-color: #81c408 !important;
+  --second-color: #ffb524 !important;
+}
+
+body {
+   font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+
+.my-custom-dropdown-title #nav-dropdown {
+  color: white !important; /* Sử dụng !important nếu cần để ghi đè Bootstrap */
+}
+.main-color {
+  background: #f53e32 !important;
+}
+
+#my_custom-th-table th {
+  background: #ffc2b2 !important;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+
+.page-header {
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./assets/imgs/banner.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-logo {
+  max-width: 150px;
+  height: auto;
+}
+
+.login-form-container {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.login-button {
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #c82333;
+}
+

@@ -1,0 +1,10 @@
+.fruite-categorie .fruite-name {
+  line-height: 40px;
+  transition: 0.5s;
+  color: rgb(61, 44, 40);
+  cursor: pointer;
+}
+
+.fruite-categorie .fruite-name:hover {
+  color: var(--second-color);
+}

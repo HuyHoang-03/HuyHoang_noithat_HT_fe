@@ -1,0 +1,96 @@
+.order-card {
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.order-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  border-color: #007bff;
+}
+
+.order-info {
+  padding: 0;
+}
+
+.order-info small {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.7rem;
+}
+
+@media (max-width: 768px) {
+  .order-card .row > div {
+    margin-bottom: 0.5rem;
+  }
+
+  .d-flex.gap-2 {
+    justify-content: start !important;
+  }
+}
+
+.order-detail-modal .modal-dialog {
+  max-width: 90%;
+}
+
+.info-card {
+  border: 1px solid #e9ecef;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.info-card .card-header {
+  font-weight: 600;
+}
+
+.info-item small {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.7rem;
+}
+
+.product-name {
+  color: #2c3e50;
+  font-size: 0.95rem;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.final-price {
+  color: #e74c3c;
+  font-size: 1rem;
+}
+
+.total-price {
+  color: #2980b9;
+  font-size: 1.1rem;
+}
+
+.order-summary {
+  border: 2px solid #007bff;
+}
+
+.total-section {
+  border: 2px dashed #28a745;
+}
+
+@media (max-width: 768px) {
+  .order-detail-modal .modal-dialog {
+    max-width: 95%;
+    margin: 10px;
+  }
+
+  .table-responsive {
+    font-size: 0.85rem;
+  }
+
+  .product-name {
+    font-size: 0.85rem;
+  }
+}

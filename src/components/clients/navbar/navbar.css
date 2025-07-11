@@ -1,0 +1,85 @@
+* {
+  --primary-color: #81c408 !important;
+  --second-color: #ffb524 !important;
+}
+
+.nav--top {
+  background: var(--primary-color);
+  padding: 20px 10px;
+  border-radius: 230px 100px;
+}
+
+.nav--item:hover {
+  color: var(--primary-color) !important;
+}
+
+.nav--search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid var(--second-color);
+  transition: all 0.3s linear;
+  cursor: pointer;
+}
+.nav--search:hover {
+  background: var(--second-color);
+}
+
+.nav--search-icon {
+  color: var(--primary-color);
+}
+
+.nav--cart {
+  position: relative;
+}
+
+.nav--cart-icon,
+.nav--account-icon {
+  color: var(--primary-color);
+}
+
+.nav--cart-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--second-color);
+  top: -10px;
+  right: -10px;
+}
+
+.nav--account {
+  position: relative;
+  cursor: pointer;
+}
+
+.nav--account-user {
+  display: none;
+  position: absolute;
+  right: 10px;
+  width: 140px;
+  background: #454444;
+  z-index: 2;
+  border-radius: 5%;
+}
+
+.nav--account:hover .nav--account-user  {
+    display: block;
+}
+
+.nav--account-link {
+  padding: 8px 16px;
+  margin-bottom: 0;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.nav--account-link:hover {
+  background: #816e6e;
+}
