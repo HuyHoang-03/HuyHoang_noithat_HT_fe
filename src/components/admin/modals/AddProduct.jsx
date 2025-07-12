@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Form, Modal, Button } from "react-bootstrap";
-import { instance } from "../../../config/Axios";
+import { instanceAdmin } from "../../../config/Axios";
 import { toast } from "react-hot-toast";
 import useFetchCategories from "../../../hooks/useFetchCategories";
 const AddProduct = ({ show, setShow, fetchProductsData }) => {
@@ -54,7 +54,7 @@ const AddProduct = ({ show, setShow, fetchProductsData }) => {
       }
     }
 
-    const response = await instance.post(`/products`, formData, {
+    const response = await instanceAdmin.post(`/products`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

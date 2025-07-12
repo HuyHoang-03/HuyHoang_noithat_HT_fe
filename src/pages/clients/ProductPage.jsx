@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { instanceLogin } from "../../config/Axios";
 import Sidebar from "../../components/clients/sidebar/Sidebar";
 import ListProducts from "../../components/clients/products/ListProducts";
+import { Button, Form, FormControl } from "react-bootstrap";
+import { FaSearch } from "react-icons/fa";
 
 const ProductPageClient = () => {
   const userID = useSelector((state) => state.auth.id);
@@ -13,8 +15,9 @@ const ProductPageClient = () => {
   const [loading, setLoading] = useState(true);
   const [categoryID, setCategoryID] = useState("");
   const [categoryList, setCategoryList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  // Fetch categories chỉ 1 lần
+  // Fetch categories
   useEffect(() => {
     const fetchCategoryData = async () => {
       try {
@@ -24,46 +27,87 @@ const ProductPageClient = () => {
           setCategoryList(data.result);
         }
       } catch (e) {
-        console.log(e);
+        console.error("Error fetching categories:", e);
       }
     };
 
     fetchCategoryData();
-  }, []); 
+  }, []);
 
-  const fetchProducts = useCallback(async (pageNumber = 0, catID = categoryID) => {
-    try {
-      setLoading(true);
-      
-      let url = "";
-      if (catID) {
-        url = `/products/category/${catID}?pageNo=${pageNumber}&pageSize=9&sortBy=id&sortDir=asc`;
-      } else {
-        url = `/products/feature-product/pagination?pageNo=${pageNumber}&pageSize=9&sortBy=id&sortDir=asc`;
+  // Fetch products
+  const fetchProducts = useCallback(
+    async (pageNumber = 0, catID = categoryID, search = searchTerm) => {
+      try {
+        setLoading(true);
+        let url = "";
+        if (search) {
+          url = `/products/search?productName=${encodeURIComponent(
+            search
+          )}&pageNo=${pageNumber}&pageSize=9&sortBy=id&sortDir=asc`;
+        } else if (catID) {
+          url = `/products/category/${catID}?pageNo=${pageNumber}&pageSize=9&sortBy=id&sortDir=asc`;
+        } else {
+          url = `/products/feature-product/pagination?pageNo=${pageNumber}&pageSize=9&sortBy=id&sortDir=asc`;
+        }
+
+        const response = await instanceLogin.get(url);
+        const data = response?.data;
+        if (data?.code === 200) {
+          const resultData = data.result;
+          if (resultData?.content && resultData?.page) {
+            // API trả về dữ liệu phân trang
+            setProducts(resultData.content);
+            setTotalPage(resultData.page.totalPages || 0);
+          } else {
+            // API search trả về danh sách trực tiếp
+            setProducts(Array.isArray(resultData) ? resultData : []);
+            setTotalPage(resultData.length > 0 ? 1 : 0); // Không phân trang
+          }
+          setCurrentPage(pageNumber);
+        } else {
+          setProducts([]);
+          setTotalPage(0);
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setProducts([]);
+        setTotalPage(0);
+      } finally {
+        setLoading(false);
       }
+    },
+    [categoryID, searchTerm]
+  );
 
-      const response = await instanceLogin.get(url);
-      const data = response?.data;
-      if (data?.code === 200) {
-        const resultData = data.result;
-        setProducts(resultData.content);
-        setTotalPage(resultData?.page?.totalPages ? resultData.page.totalPages : 0 );
-        setCurrentPage(pageNumber);
-      }
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    } finally {
-      setLoading(false);
-    }
-  }, [categoryID]);
-
+  // Gọi lại fetchProducts khi categoryID hoặc searchTerm thay đổi
   useEffect(() => {
-    fetchProducts(0, categoryID);
-  }, [categoryID]);
+    fetchProducts(0, categoryID, searchTerm);
+  }, [categoryID, searchTerm, fetchProducts]);
 
-  const handlePageChange = useCallback((selectedPage) => {
-    fetchProducts(selectedPage);
-  }, [fetchProducts]);
+  // Xử lý thay đổi trang
+  const handlePageChange = useCallback(
+    (selectedPage) => {
+      fetchProducts(selectedPage, categoryID, searchTerm);
+    },
+    [fetchProducts, categoryID, searchTerm]
+  );
+
+  // Xử lý sự kiện tìm kiếm
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setCurrentPage(0);
+    fetchProducts(0, categoryID, searchTerm);
+  };
+
+  // Xử lý thay đổi từ khóa tìm kiếm
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    if (!value) {
+      setCurrentPage(0);
+      fetchProducts(0, categoryID, "");
+    }
+  };
 
   return (
     <>
@@ -81,6 +125,29 @@ const ProductPageClient = () => {
         </ol>
       </div>
       <div className="container mt-5">
+        <div className="row p-4 mb-3 justify-content-end">
+          <Form
+            className="d-none d-lg-flex me-3"
+            style={{ maxWidth: "300px" }}
+            onSubmit={handleSearch}
+          >
+            <FormControl
+              type="search"
+              placeholder="Tìm kiếm sản phẩm..."
+              className="rounded-pill"
+              aria-label="Search"
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+            <Button
+              variant="outline-secondary"
+              className="ms-2 rounded-circle"
+              type="submit"
+            >
+              <FaSearch />
+            </Button>
+          </Form>
+        </div>
         <div className="row g-4">
           <Sidebar categoryList={categoryList} setCategoryID={setCategoryID} />
           <ListProducts
