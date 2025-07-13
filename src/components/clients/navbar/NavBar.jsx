@@ -62,19 +62,6 @@ const NavBar = () => {
               </Nav.Link>
             </Nav>
 
-            {/* Search bar - visible on desktop */}
-            <Form className="d-none d-lg-flex me-3" style={{ maxWidth: "300px" }}>
-              <FormControl
-                type="search"
-                placeholder="Tìm kiếm sản phẩm..."
-                className="rounded-pill"
-                aria-label="Search"
-              />
-              <Button variant="outline-secondary" className="ms-2 rounded-circle">
-                <FaSearch />
-              </Button>
-            </Form>
-
             {isLogin ? <div className="d-flex align-items-center gap-3 ms-lg-auto">
               {/* Cart icon */}
               <Nav.Link as={NavLink} to="/cart" className="position-relative p-2">
