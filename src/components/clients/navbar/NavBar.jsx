@@ -75,7 +75,7 @@ const NavBar = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu className="mt-2 border-0 shadow">
-                  <Dropdown.Item as={NavLink} to="/account" className="py-2">
+                  <Dropdown.Item as={NavLink} to="/myinfo" className="py-2">
                     Tài khoản
                   </Dropdown.Item>
                   {role === "ADMIN" && (
