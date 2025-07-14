@@ -7,7 +7,7 @@ import defaultImg from "../../../assets/imgs/defaultImage.png";
 import { FaShoppingCart } from "react-icons/fa";
 import { handleAuthCheck } from "../../../config/customeFunction";
 import LoginModal from "../modals/LoginModal";
-const FruitShop = () => {
+const FeatureProducts = () => {
   const isLogin = handleAuthCheck();
   const userID = useSelector((state) => state.auth.id);
   const [products, setProducts] = useState([]);
@@ -109,7 +109,7 @@ const FruitShop = () => {
                                 {`${convertVND(
                                   product.price -
                                   product.price / product.discount.discountValue
-                                )} / ${product.unit}`}
+                                )} / ${product.dimensions}`}
                               </p>
                             </div>
                           ) : (
@@ -145,4 +145,4 @@ const FruitShop = () => {
   );
 };
 
-export default FruitShop;
+export default FeatureProducts;

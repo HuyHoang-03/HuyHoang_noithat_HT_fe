@@ -1,11 +1,11 @@
 import Hero from "../../components/clients/hero/Hero"
-import FruitShop from "../../components/clients/fruitShop/FruitShop"
+import FeatureProducts from "../../components/clients/FeatureProduct/FeatureProducts"
 import Feature from "../../components/clients/feature/Feature"
 const HomePage = () => {
   return (
    <>
     <Hero/>
-    <FruitShop/>
+    <FeatureProducts/>
     <Feature/>
    </>
   )

@@ -21,96 +21,7 @@ import PaymentForm from "../components/clients/order/PaymentForm.jsx";
 import ContactPage from "../pages/clients/ContactPage.jsx";
 import AboutPage from "../pages/clients/AboutPage.jsx";
 import RegisterPage from "../pages/clients/RegisterPage.jsx"
-
-/*
-const routers = createBrowserRouter([
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/",
-    element: <PrivateRoute element={<App />} />,
-    errorElement: <h1>404</h1>,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/products",
-        element: <ProductPageClient />,
-      },
-      {
-        path: "products/detail/:id",
-        element: <DetailProductPage />,
-      },
-      {
-        path: "/cart",
-        element: <CartPage />,
-      },
-      {
-        path: "/contact",
-        element: <ContactPage />,
-      },
-      {
-        path: "/aboutus",
-        element: <AboutPage />,
-      },
-      {
-        path: "/order",
-        element: <OrderUserPage />,
-      },
-      {
-        path: "/order/paymentmomo",
-        element: <PaymentForm />,
-      },
-    ],
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
-  },
-  {
-    path: "/admin/login",
-    element: <Login />,
-  },
-  {
-    path: "/admin",
-    element: <PrivateRouteAdmin element={<Dashboard />} />,
-    children: [
-      {
-        index: true,
-        path: "/admin/products",
-        element: <ProductPage />,
-      },
-      {
-        path: "/admin/categories",
-        element: <CategoryPage />,
-      },
-      {
-        path: "/admin/discounts",
-        element: <DiscountPage />,
-      },
-      {
-        path: "/admin/customers",
-        element: <CustomerPage />,
-      },
-      {
-        path: "/admin/warehouse",
-        element: <WarehousePage />,
-      },
-      {
-        path: "/admin/orders",
-        element: <OrderPage />,
-      },
-      {
-        path: "/admin/report",
-        element: <ReportDashboard />,
-      },
-    ],
-  },
-]); */
+// import UserInfo from "../pages/clients/UserInfo.jsx";
 
 
 const routers = createBrowserRouter([
@@ -135,9 +46,14 @@ const routers = createBrowserRouter([
         path: "products/detail/:id",
         element: <DetailProductPage />,
       },
+      // {
+      //   path: "/myinfo",
+      //   element: <UserInfo />,
+      // },
       {
         path: "/cart",
         element: <CartPage />,
+        // element: <PrivateRoute element={<CartPage />} />,
       },
       {
         path: "/contact",

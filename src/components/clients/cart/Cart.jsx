@@ -112,6 +112,8 @@ const Cart = () => {
   const handleRemoveItem = async (cartId) => {
     try {
       const response = await instance.delete(`/cart/delete/${cartId}`);
+      console.log(response);
+      
       if (response?.code == 200) {
         toast.success(response.message);
         fetchDataApi();
