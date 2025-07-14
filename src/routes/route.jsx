@@ -21,7 +21,7 @@ import PaymentForm from "../components/clients/order/PaymentForm.jsx";
 import ContactPage from "../pages/clients/ContactPage.jsx";
 import AboutPage from "../pages/clients/AboutPage.jsx";
 import RegisterPage from "../pages/clients/RegisterPage.jsx"
-// import UserInfo from "../pages/clients/UserInfo.jsx";
+import UserInfo from "../pages/clients/UserInfo.jsx";
 
 
 const routers = createBrowserRouter([
@@ -46,10 +46,10 @@ const routers = createBrowserRouter([
         path: "products/detail/:id",
         element: <DetailProductPage />,
       },
-      // {
-      //   path: "/myinfo",
-      //   element: <UserInfo />,
-      // },
+      {
+        path: "/myinfo",
+        element: <UserInfo />,
+      },
       {
         path: "/cart",
         element: <CartPage />,

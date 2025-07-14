@@ -20,10 +20,10 @@ const Items = ({ currentItems, userID, openModal, closeModal }) => {
           productId,
           quantity,
         });
-        if (response?.data?.code === 201) {
-          toast.success(response?.data?.message);
+        if (response?.code === 201) {
+          toast.success(response?.message);
         } else {
-          toast.error(response?.data?.message);
+          toast.error(response?.message);
         }
       } catch (error) {
         toast.error(`Lỗi: ${error.message}`);
